@@ -5,30 +5,10 @@
 * @license: Licensed under the MIT license. See http://www.opensource.org/licenses/mit-license.php
 * @website: http://www.daterangepicker.com/
 */
-// Following the UMD template https://github.com/umdjs/umd/blob/master/templates/returnExportsGlobal.js
-(function (root, factory) {
-    if (typeof define === 'function' && define.amd) {
-        // AMD. Make globaly available as well
-        define(['moment', 'jquery'], function (moment, jquery) {
-            if (!jquery.fn) jquery.fn = {}; // webpack server rendering
-            if (typeof moment !== 'function' && moment.hasOwnProperty('default')) moment = moment['default']
-            return factory(moment, jquery);
-        });
-    } else if (typeof module === 'object' && module.exports) {
-        // Node / Browserify
-        //isomorphic issue
-        var jQuery = (typeof window != 'undefined') ? window.jQuery : undefined;
-        if (!jQuery) {
-            jQuery = require('jquery');
-            if (!jQuery.fn) jQuery.fn = {};
-        }
-        var moment = (typeof window != 'undefined' && typeof window.moment != 'undefined') ? window.moment : require('moment');
-        module.exports = factory(moment, jQuery);
-    } else {
-        // Browser globals
-        root.daterangepicker = factory(root.moment, root.jQuery);
-    }
-}(typeof window !== 'undefined' ? window : this, function(moment, $) {
+
+import moment from 'moment';
+import jquery from 'jquery';
+
     var DateRangePicker = function(element, options, cb) {
 
         //default settings for options
@@ -1573,6 +1553,4 @@
         return this;
     };
 
-    return DateRangePicker;
-
-}));
+export default DateRangePicker
