@@ -7,7 +7,7 @@
 */
 
 import moment from 'moment';
-import jquery from 'jquery';
+import $ from 'jquery';
 
     var DateRangePicker = function(element, options, cb) {
 
